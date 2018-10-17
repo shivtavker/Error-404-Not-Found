@@ -1,6 +1,6 @@
 const app = require('./app');
 const debug = require('debug')('Error-404-Not-Found');
-const http = require('http'); //This is default node Module
+const http = require('http');
 
 const normalizePort = val => {
   var port = parseInt(val, 10);
