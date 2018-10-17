@@ -1,2 +1,33 @@
 # Server
 /Server/node_modules
+
+# Client
+/Client/*.sw[mnpcod]
+/Client/*.log
+/Client/*.tmp
+/Client/*.tmp.*
+/Client/log.txt
+/Client/*.sublime-project
+/Client/*.sublime-workspace
+/Client/.vscode/
+/Client/npm-debug.log*
+/Client/.idea/
+/Client/.sourcemaps/
+/Client/.sass-cache/
+/Client/.tmp/
+/Client/.versions/
+/Client/coverage/
+/Client/dist/
+/Client/node_modules/
+/Client/tmp/
+/Client/temp/
+/Client/hooks/
+/Client/platforms/
+/Client/plugins/
+/Client/plugins/android.json
+/Client/plugins/ios.json
+/Client/www/
+/Client/$RECYCLE.BIN/
+/Client/.DS_Store
+/Client/Thumbs.db
+/Client/UserInterfaceState.xcuserstate

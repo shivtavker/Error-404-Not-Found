@@ -6,7 +6,7 @@
   "scripts": {
     "dev-server": "node ./server.js"
   },
-  "author": "Error-404-Not-Found",
+  "author": "Error-404-Not-Found-Codefundo++",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",

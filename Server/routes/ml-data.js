@@ -3,6 +3,7 @@ var router = express.Router();
 const spawn = require('child_process').spawn;
 
 let runPy = new Promise(function(success, nosuccess) {
+  // -- specify function names, arguments in array;
   const pyprog = spawn('python', ['./python_scripts/test.py']);
 
   pyprog.stdout.on('data', res => {
