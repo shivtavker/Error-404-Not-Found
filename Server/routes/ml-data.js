@@ -23,7 +23,7 @@ function httpGet(url, callback) {
     json: true,
   };
   request(options, (err, apiRes, body) => {
-    callback(err, body);
+    callback(err, proc(body));
   });
 }
 
