@@ -1,5 +1,12 @@
 // http://ionicframework.com/docs/theming/
 
+.cancel-button {
+  float: right;
+  margin-right: 5px;
+  font-weight: normal;
+  color: red;
+  cursor: pointer;
+}
 
 // App Global Sass
 // --------------------------------------------------

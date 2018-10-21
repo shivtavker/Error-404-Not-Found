@@ -3,9 +3,18 @@
     <ion-title>
       Select Your Location
     </ion-title>
+     <span class="cancel-button" (click) = "dismiss()">Cancel</span>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <button ion-button color="light" full><ion-icon name="pin" md="ios-outline" isActive="true" style="color: red;"></ion-icon><span style="margin: 15px;">Current Location</span></button>
+<ion-content>
+    <button ion-button color="light" style="margin-bottom: 0px;" full><ion-icon name="pin" md="ios-outline" isActive="true" style="color: red;"></ion-icon><span style="margin: 15px;">Use Current Location</span></button>
+    <ion-toolbar color="light">
+        <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Search for a place"></ion-searchbar>
+    </ion-toolbar>
+    <ion-list [hidden]="autocompleteItems.length == 0">
+        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+            {{ item.description }}
+        </ion-item>
+    </ion-list>
 </ion-content>
