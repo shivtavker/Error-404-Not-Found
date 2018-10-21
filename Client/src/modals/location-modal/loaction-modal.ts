@@ -1,6 +1,8 @@
 import { Component, NgZone } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 
+import { LocationService } from '../../services/location.service';
+
 declare var google;
 
 @Component({
@@ -12,7 +14,11 @@ export class LocationModal {
   autocompleteItems;
   GoogleAutocomplete;
   geocoder;
-  constructor(public viewCtrl: ViewController, public zone: NgZone) {
+  constructor(
+    public viewCtrl: ViewController,
+    public zone: NgZone,
+    public locationService: LocationService
+  ) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     // prettier-ignore-next-statement
     this.geocoder = new google.maps.Geocoder();
@@ -42,12 +48,18 @@ export class LocationModal {
     this.geocoder.geocode({ placeId: result.place_id }, (results, status) => {
       if (status === 'OK' && results[0]) {
         let position = {
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng(),
+          Lat: results[0].geometry.location.lat(),
+          Lng: results[0].geometry.location.lng(),
         };
-        console.log(position);
+        this.updateLocation(position);
       }
     });
+  }
+
+  updateLocation(position) {
+    this.locationService.updateLocation(position);
+    this.locationService.updateSafePlace(position);
+    this.dismiss();
   }
 
   dismiss() {

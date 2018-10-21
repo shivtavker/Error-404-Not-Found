@@ -10,6 +10,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { LocationModal } from '../modals/location-modal/loaction-modal';
 
+import { LocationService } from '../services/location.service';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -35,6 +37,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    LocationService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
 })
