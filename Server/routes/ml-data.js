@@ -14,7 +14,13 @@ function proc(jdata) {
     precipint += jdata.daily.data[i].precipIntensityMax;
   }
   var flood = precipint > 50;
-  return { alert: alert, precipint: precipint, flood: flood };
+  return {
+    alert: alert,
+    precipint: precipint,
+    flood: flood,
+    Lat: jdata.latitude,
+    Lng: jdata.longitude,
+  };
 }
 
 function httpGet(url, callback) {
