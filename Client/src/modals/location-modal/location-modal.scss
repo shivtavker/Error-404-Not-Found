@@ -1,6 +1,14 @@
+ion-title {
+  display: inline-block;
+}
+
 .location-input-container {
   font-weight: bold;
   margin-top: 20px;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 .location-input {

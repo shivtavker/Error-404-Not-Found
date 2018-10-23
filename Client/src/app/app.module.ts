@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+import { NavigatePage } from '../pages/navigate/navigate';
 import { ContactPage } from '../pages/contact/contact';
 import { WeatherPage } from '../pages/weather/weather';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    NavigatePage,
     ContactPage,
     WeatherPage,
     TabsPage,
@@ -30,7 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    NavigatePage,
     ContactPage,
     WeatherPage,
     TabsPage,

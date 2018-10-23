@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
+import { NavigatePage } from '../navigate/navigate';
 import { ContactPage } from '../contact/contact';
 import { WeatherPage } from '../weather/weather';
 
@@ -9,7 +9,7 @@ import { WeatherPage } from '../weather/weather';
 })
 export class TabsPage {
   tab1Root = WeatherPage;
-  tab2Root = AboutPage;
+  tab2Root = NavigatePage;
   tab3Root = ContactPage;
 
   constructor() {}

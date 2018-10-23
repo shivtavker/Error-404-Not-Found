@@ -6,6 +6,11 @@
   font-weight: normal;
   color: red;
   cursor: pointer;
+  margin-top: 4px;
+}
+
+.scroll-content {
+  overflow-y: hidden;
 }
 
 // App Global Sass
