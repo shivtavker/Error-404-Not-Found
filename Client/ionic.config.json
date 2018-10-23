@@ -1,6 +1,8 @@
 {
   "name": "Error-404-Not-Found",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "app_id": ""
 }

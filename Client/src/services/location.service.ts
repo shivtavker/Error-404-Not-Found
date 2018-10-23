@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LoadingController } from 'ionic-angular';
 
 interface Position {
   Lat: number;
@@ -29,12 +30,22 @@ export class LocationService {
 
   locationWeather: Weather;
   locationWeatherAvailable = false;
+  loading;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    public loadingCtrl: LoadingController
+  ) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Loading Please Wait...',
+    });
+  }
 
   updateLocation(position: Position) {
     this.location = position;
     this.locationWeatherAvailable = false;
+    this.loading.present();
     this.getLocationWeather(this.location);
   }
   updateSafePlace(position: Position) {
@@ -45,7 +56,7 @@ export class LocationService {
     let queryUrl =
       DomainUrl + `mldata/?location=${location.Lat},${location.Lng}`;
 
-    this.httpClient.get(queryUrl).subscribe(weathers => {
+    this.httpClient.get(queryUrl).subscribe((weathers: Array<Weather>) => {
       weathers.forEach(weather => {
         if (weather.Lat == location.Lat && weather.Lng == location.Lng) {
           this.locationWeather = weather;
@@ -63,6 +74,7 @@ export class LocationService {
           }
         });
       }
+      this.loading.dismiss();
     });
   }
 }

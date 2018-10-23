@@ -1,5 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { ViewController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { LocationService } from '../../services/location.service';
 
@@ -17,7 +18,8 @@ export class LocationModal {
   constructor(
     public viewCtrl: ViewController,
     public zone: NgZone,
-    public locationService: LocationService
+    public locationService: LocationService,
+    public geolocation: Geolocation
   ) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     // prettier-ignore-next-statement
@@ -60,6 +62,22 @@ export class LocationModal {
     this.locationService.updateLocation(position);
     this.locationService.updateSafePlace(position);
     this.dismiss();
+  }
+
+  getCurrentLocation() {
+    this.geolocation
+      .getCurrentPosition()
+      .then(location => {
+        let position = {
+          Lat: location['coords']['latitude'],
+          Lng: location['coords']['longitude'],
+        };
+        console.log(position);
+        this.updateLocation(position);
+      })
+      .catch(err => {
+        alert({ msg: 'Error getting Current Location', error: err });
+      });
   }
 
   dismiss() {
