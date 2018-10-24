@@ -14,9 +14,14 @@
     </ion-card-content>
   </ion-card>
 
-  <div class="safePanel" *ngIf="locationService.atSafePlace">
+  <div class="safePanel" *ngIf="locationService.atSafePlace && !locationService.everywhereFlood">
     <b style="font-size: 20px;">
       You are at a Safe Place
+    </b>
+  </div>
+  <div class="alertPanel" *ngIf="locationService.atSafePlace && locationService.everywhereFlood">
+    <b style="font-size: 20px;">
+      No Safe Place Found, Read Guide Book and Take Atmost Care.
     </b>
   </div>
   <div #map id="map"></div> 

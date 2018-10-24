@@ -31,6 +31,8 @@ export class NavigatePage {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false,
       scaleControl: false,
+      zoomControl: false,
+      streetViewControl: false,
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);

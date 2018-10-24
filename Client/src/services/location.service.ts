@@ -13,6 +13,8 @@ interface Weather {
   flood: Boolean;
   lat: number;
   lng: number;
+  temp: number;
+  humidity: number;
 }
 
 var DomainUrl = 'http://localhost:3000/api/';
@@ -32,6 +34,8 @@ export class LocationService {
   locationWeatherAvailable = false;
   loading;
   atSafePlace = true;
+  everywhereFlood = false;
+  address;
 
   constructor(
     private httpClient: HttpClient,
@@ -43,8 +47,9 @@ export class LocationService {
     });
   }
 
-  updateLocation(position: Position) {
+  updateLocation(position: Position, address) {
     this.location = position;
+    this.address = address;
     this.locationWeatherAvailable = false;
     this.loading.present();
     this.getLocationWeather(this.location);
@@ -61,6 +66,7 @@ export class LocationService {
       weathers.forEach(weather => {
         if (weather.lat == location.lat && weather.lng == location.lng) {
           this.locationWeather = weather;
+          console.log(this.locationWeather);
           this.locationWeatherAvailable = true;
         }
       });
@@ -73,10 +79,13 @@ export class LocationService {
               lng: weather.lng,
             };
             this.atSafePlace = false;
-          }
+          } else this.everywhereFlood = true;
         });
       }
       this.loading.dismiss();
     });
+  }
+  getSafePlace() {
+    return this.atSafePlace;
   }
 }

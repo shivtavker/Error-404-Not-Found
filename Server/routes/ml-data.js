@@ -14,12 +14,22 @@ function proc(jdata) {
     precipint += jdata.daily.data[i].precipIntensityMax;
   }
   var flood = precipint > 50;
+  // var flood = Math.random() >= 0.5;
+  flood = true;
+  var fahrenheit =
+    0.5 *
+    (jdata['daily']['data'][0]['temperatureHigh'] +
+      jdata['daily']['data'][0]['temperatureLow']);
+  var celsius = (fahrenheit - 32) * 5 / 9;
   return {
     alert: alert,
-    precipint: precipint,
+    precipint: Math.round(precipint * 100) / 100,
     flood: flood,
     lat: jdata.latitude,
     lng: jdata.longitude,
+    temp: Math.round(celsius * 10) / 10,
+    icon: jdata['daily']['data'][0]['icon'],
+    humidity: jdata['daily']['data'][0]['humidity'],
   };
 }
 
@@ -96,7 +106,7 @@ router.get('/', (req, res, next) => {
   ];
   var urls = [];
   for (var i = 0; i < locations.length; i++) {
-    var url = `https://api.darksky.net/forecast/9191d936fc03d4c50faebb90012b5400/${locations[
+    var url = `https://api.darksky.net/forecast/89e8be7f9f0f84633f4ad7908eeff98e/${locations[
       i
     ]}?exclude=currently,minutely,hourly,flags`;
     urls.push(url);

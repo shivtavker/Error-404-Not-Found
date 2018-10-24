@@ -53,13 +53,15 @@ export class LocationModal {
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
         };
-        this.updateLocation(position);
+        console.log(results[0]);
+        let address = results[0]['address_components'][1]['long_name'];
+        this.updateLocation(position, address);
       }
     });
   }
 
-  updateLocation(position) {
-    this.locationService.updateLocation(position);
+  updateLocation(position, address) {
+    this.locationService.updateLocation(position, address);
     this.locationService.updateSafePlace(position);
     this.dismiss();
   }
@@ -72,8 +74,8 @@ export class LocationModal {
           lat: location['coords']['latitude'],
           lng: location['coords']['longitude'],
         };
-        console.log(position);
-        this.updateLocation(position);
+        console.log(location);
+        this.updateLocation(position, 'Nothing now');
       })
       .catch(err => {
         alert({ msg: 'Error getting Current Location', error: err });

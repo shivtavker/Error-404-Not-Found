@@ -31,4 +31,10 @@ app-tab-navigation {
     color: white;
     background: #32db64;
   }
+
+  .alertPanel {
+    text-align: center;
+    color: white;
+    background: color($colors, danger);
+  }
 }

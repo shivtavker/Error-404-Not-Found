@@ -4,8 +4,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <div class="weather-container">
-    <h3>This will Show Weather</h3>
+<ion-content class="home" >
+  <div class="alertPanel" *ngIf="locationService.locationWeatherAvailable && locationService.locationWeather.flood">
+    <strong>Flood Alert</strong>
   </div>
+  <ion-grid *ngIf="locationService.locationWeatherAvailable">
+    <ion-row>
+      <ion-col width-50 offset-25>
+        <h2 class="location"> {{locationService['address']}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <strong>Temperature:</strong> &nbsp; {{locationService['locationWeather']['temp']}} &#8451;
+             <!--&#8451-->
+          </ion-item>
+          <ion-item>
+              <strong>Relative Humidity:</strong> &nbsp; {{locationService['locationWeather']['humidity']}}
+          </ion-item>
+          <ion-item>
+              <strong>Precip Intensity for a Week:</strong> &nbsp; {{locationService['locationWeather']['precipint']}} <strong>mm/Hr</strong>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
