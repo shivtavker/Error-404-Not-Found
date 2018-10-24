@@ -1,15 +1,34 @@
-.scroll {
-  height: 100%;
-}
+app-tab-navigation {
+  .scroll {
+    height: 100%;
+  }
 
-#map {
-  width: 100%;
-  height: 100%;
-}
+  #map {
+    width: 100%;
+    height: 100%;
+  }
 
-ion-card {
-  max-height: 200px;
-  overflow: scroll;
-  position: absolute;
-  z-index: 1;
+  ion-card {
+    max-height: 160px;
+    width: 100%;
+    margin: 0px;
+    overflow: scroll;
+    position: absolute;
+    z-index: 1;
+    background-color: #f94531 !important;
+  }
+  ::-webkit-scrollbar {
+    width: 0px; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+  }
+
+  .card-content-md {
+    padding: 0px 10px;
+  }
+
+  .safePanel {
+    text-align: center;
+    color: white;
+    background: #32db64;
+  }
 }

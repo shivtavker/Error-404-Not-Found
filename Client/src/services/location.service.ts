@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
 
 interface Position {
-  Lat: number;
-  Lng: number;
+  lat: number;
+  lng: number;
 }
 
 interface Weather {
   alert: string;
   precipint: number;
   flood: Boolean;
-  Lat: number;
-  Lng: number;
+  lat: number;
+  lng: number;
 }
 
 var DomainUrl = 'http://localhost:3000/api/';
@@ -20,17 +20,18 @@ var DomainUrl = 'http://localhost:3000/api/';
 @Injectable()
 export class LocationService {
   location = {
-    Lat: 0,
-    Lng: 0,
+    lat: 0,
+    lng: 0,
   };
   safePlace = {
-    Lat: 0,
-    Lng: 0,
+    lat: 0,
+    lng: 0,
   };
 
   locationWeather: Weather;
   locationWeatherAvailable = false;
   loading;
+  atSafePlace = true;
 
   constructor(
     private httpClient: HttpClient,
@@ -54,11 +55,11 @@ export class LocationService {
 
   getLocationWeather(location: Position) {
     let queryUrl =
-      DomainUrl + `mldata/?location=${location.Lat},${location.Lng}`;
+      DomainUrl + `mldata/?location=${location.lat},${location.lng}`;
 
     this.httpClient.get(queryUrl).subscribe((weathers: Array<Weather>) => {
       weathers.forEach(weather => {
-        if (weather.Lat == location.Lat && weather.Lng == location.Lng) {
+        if (weather.lat == location.lat && weather.lng == location.lng) {
           this.locationWeather = weather;
           this.locationWeatherAvailable = true;
         }
@@ -68,9 +69,10 @@ export class LocationService {
         weathers.forEach(weather => {
           if (!weather.flood) {
             this.safePlace = {
-              Lat: weather.Lat,
-              Lng: weather.Lng,
+              lat: weather.lat,
+              lng: weather.lng,
             };
+            this.atSafePlace = false;
           }
         });
       }

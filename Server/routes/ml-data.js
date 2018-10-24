@@ -18,8 +18,8 @@ function proc(jdata) {
     alert: alert,
     precipint: precipint,
     flood: flood,
-    Lat: jdata.latitude,
-    Lng: jdata.longitude,
+    lat: jdata.latitude,
+    lng: jdata.longitude,
   };
 }
 

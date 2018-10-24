@@ -50,8 +50,8 @@ export class LocationModal {
     this.geocoder.geocode({ placeId: result.place_id }, (results, status) => {
       if (status === 'OK' && results[0]) {
         let position = {
-          Lat: results[0].geometry.location.lat(),
-          Lng: results[0].geometry.location.lng(),
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
         };
         this.updateLocation(position);
       }
@@ -69,8 +69,8 @@ export class LocationModal {
       .getCurrentPosition()
       .then(location => {
         let position = {
-          Lat: location['coords']['latitude'],
-          Lng: location['coords']['longitude'],
+          lat: location['coords']['latitude'],
+          lng: location['coords']['longitude'],
         };
         console.log(position);
         this.updateLocation(position);

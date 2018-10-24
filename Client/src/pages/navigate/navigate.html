@@ -7,11 +7,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card *ngIf="!locationService.atSafePlace">
     <ion-card-content>
-      <div #directionsPanel></div>
+      <div #directionsPanel class="directionPanel">
+      </div>
     </ion-card-content>
   </ion-card>
-     
+
+  <div class="safePanel" *ngIf="locationService.atSafePlace">
+    <b style="font-size: 20px;">
+      You are at a Safe Place
+    </b>
+  </div>
   <div #map id="map"></div> 
 </ion-content>

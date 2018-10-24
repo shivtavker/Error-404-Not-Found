@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LocationService } from '../../services/location.service';
+
+declare var google;
 
 @Component({
   selector: 'app-tab-navigation',
@@ -17,34 +19,44 @@ export class NavigatePage {
   ) {}
 
   ionViewDidLoad() {
+    console.log('Google Api call');
     this.loadMap();
-    // this.startNavigating();
+    if (!this.locationService.atSafePlace) this.startNavigating();
   }
 
   loadMap() {
-    let latLng = new google.maps.LatLng(
-      this.locationService.location.Lat,
-      this.locationService.location.Lng
-    );
-
     let mapOptions = {
-      center: latLng,
+      center: this.locationService.location,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      scaleControl: false,
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-    // let marker = new google.maps.Marker({
-    //   map: this.map,
-    //   animation: google.maps.Animation.DROP,
-    //   position: this.map.getCenter(),
-    // });
   }
 
   startNavigating() {
+    // let safe_marker = new google.maps.Marker({
+    //   map: this.map,
+    //   animation: google.maps.Animation.DROP,
+    //   position: this.locationService.safePlace,
+    // });
+
+    // let curr_marker = new google.maps.Marker({
+    //   map: this.map,
+    //   animation: google.maps.Animation.DROP,
+    //   position: this.locationService.location,
+    // });
+
+    // safe_marker.setIcon(
+    //   'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    // );
+
     let directionsService = new google.maps.DirectionsService();
-    let directionsDisplay = new google.maps.DirectionsRenderer();
+    let directionsDisplay = new google.maps.DirectionsRenderer({
+      preserveViewport: true,
+    });
 
     directionsDisplay.setMap(this.map);
     directionsDisplay.setPanel(this.directionsPanel.nativeElement);
